@@ -10,6 +10,11 @@
         // Use global variables if the locals are undefined.
         return factory(_ || root._, Backbone || root.Backbone);
       });
+   } else if (typeof exports !== "undefined") {
+       // CommonJS
+       var Backbone = require('backbone');
+       var _ = require('underscore');
+       module.exports = factory(_, Backbone);
    } else {
       // RequireJS isn't being used. Assume underscore and backbone are loaded in <script> tags
       factory(_, Backbone);
